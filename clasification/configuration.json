@@ -1,0 +1,9 @@
+{
+    "IP_SERVER":"http://192.168.0.73:8000",
+    "IP_CLIENT":"",
+    "POWER_HIGH":60,
+    "POWER_LOW":15
+}
+
+
+

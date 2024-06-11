@@ -1,0 +1,26 @@
+{% extends "clasification/base.html" %}
+{% load static %}
+{% block body %}
+
+
+
+<div class="container-main">
+        
+
+    <ul>
+        <li><a class="active" href="{% url 'clasification:directions_jahat' %}">جهات</a></li>
+        <li><a href="{% url 'clasification:classification_view' %}" >تست دسته بندی</a></li>
+        {% comment %} <li><a href="./directions_zaman.html">زمان</a></li>
+        <li><a href="./directions_adad.html">اعداد</a></li>
+        <li><a href="./directions_keshvar.html">کشورها</a></li>
+        <li><a href="./directions_shahr.html">شهرها</a></li>
+        
+        <li><a href="./directions_makan.html">مکان­ها</a></li>
+        <li><a href="./directions_shakhs.html">اشخاص</a></li>
+        <li><a href="./directions_adavat.html">ادوات­ جنگی</a></li>
+        <li><a href="./directions_rahyabi.html">راه­یابی</a></li> {% endcomment %}
+      </ul>
+
+</div>
+
+{% endblock body %}

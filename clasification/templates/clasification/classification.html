@@ -1,0 +1,88 @@
+{% extends "clasification/base.html" %}
+{% load static %}
+
+
+{% block script %}
+<script>
+    let correct_probably = 20;
+    
+    //get data from django view
+    var ip = '{{IP_SERVER}}'
+    
+
+    var probabilty_high = '{{POWER_HIGH}}'
+    var probabilty_low = '{{POWER_LOW}}'
+
+    const url = ip+'/classification/receive-json/';
+
+    setInterval(myFunction, 5000);
+    
+    
+    function send_data_to_server(data,url){
+        fetch(url, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        })
+        .then(response => response.json())
+        .then(responseData => {
+            console.log('Success:', responseData);
+        })
+        .catch((error) => {
+            console.error('Error:', error);
+        });
+    };
+    
+    function chooseNumber() {
+        
+        let word = localStorage.getItem("word");
+        
+        
+        let random = Math.random(); // تولید یک عدد تصادفی بین 0 و 1
+        console.log(random)
+        if (random < (probabilty_high/100)) {
+            console.log("Yes")
+            let data = {"word": word};
+            send_data_to_server(data,url);
+            return word; // با احتمال ۸۰ درصد عدد ۹ انتخاب می‌شود
+        } else {
+            console.log("No")
+            let data = {"word": "بالا"};
+            send_data_to_server(data,url);
+            return "بالا"; // با احتمال ۲۰ درصد عدد ۲ انتخاب می‌شود
+        }
+    }
+
+    // JSON data to be sent
+
+
+// URL of the Django endpoint
+
+
+// Send JSON data to the Django server
+
+    
+    function myFunction(){
+
+        document.getElementById("change-text").innerHTML = chooseNumber();
+    }
+    
+
+
+        
+    
+    
+</script>
+{% endblock script %}
+
+
+{% block body %}
+
+<div class="container">
+    <div class="child">
+       <p class="text-show" id="change-text">در حال پردازش...</p> 
+    </div>
+    </div>
+{% endblock body %}

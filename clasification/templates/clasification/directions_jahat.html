@@ -1,0 +1,43 @@
+{% extends "clasification/base.html" %}
+{% load static %}
+
+
+{% block script %}
+<script>
+    var data =JSON.stringify("./configuration.json")
+    //const word = ['شمال','جنوب','شرق','غرب','بالا','پایین','راست','چپ','جلو','عقب','مثبت','منفی'];
+    
+    const word = ['شروع','بالا','پایین','راست','چپ','جلو','عقب','پایان'];
+    
+    localStorage.clear();
+    
+    let Index = 0;
+                
+    document.addEventListener('keyup', event => {
+        if (event.code === 'Space') {
+            
+            document.getElementById("change-text").innerHTML = word[Index];
+            localStorage.setItem("Index", Index);
+            localStorage.setItem("word", word[Index]);
+            Index += 1;
+
+            if (Index >= word.length){
+                Index=0;
+            } 
+        }
+        })
+        
+    
+    
+</script>
+{% endblock script %}
+
+
+{% block body %}
+
+<div class="container">
+    <div class="child">
+       <p class="text-show" id="change-text">جهت</p> 
+    </div>
+    </div>
+{% endblock body %}
